@@ -129,24 +129,19 @@ class Quiz07RandomChoice:
 class Quiz08Rps:
     def __init__(self, player):
         self.player = player
+        self.rpsName = ['가위', '바위', '보']
+        self.c = myRandom(1, 3)
 
     def game(self):
         # 1 가위 2 바위 3 보
-        c = myRandom(0,2)
-        p = self.player
-        rps = ['가위', '바위', '보']
-        rps = p-c
-
-
-
-
+        rps = self.player-self.c
 
         if rps == 0:
             res = '무승부'
-        elif rps == 1 or -2:
-            res = '패배'
-        elif rps == -1 or 2:
+        elif rps == 1 or rps == -2:
             res = '이김'
+        elif rps == -1 or rps == 2:
+            res = '패배'
         return res
 
 

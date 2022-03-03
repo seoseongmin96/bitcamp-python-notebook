@@ -42,12 +42,17 @@ if __name__ == '__main__':
         elif menu == '6':
             q6 = Quiz06RandomGenerator
             print(q6.random())
+
         elif menu == '7':
             q7 = Quiz07RandomChoice()
             print(q7.chooseMember())
+
         elif menu == '8':
-            q8 = Quiz08Rps(int(input('Player: '))) # 가위 1 바위 2 보 3
-            print(q8.game())
+            q8 = Quiz08Rps(int(input('Player : ')))
+            print(f'Player : {q8.rpsName[q8.player-1]}\n'
+                  f'Com : {q8.rpsName[q8.c-1]}\n'
+                  f'Res : {q8.game()}')
+           
 
 
 
