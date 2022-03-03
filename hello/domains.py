@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Members:
+class Member:
     name: str
     height: float
     weight: float

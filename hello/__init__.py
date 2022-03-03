@@ -1,6 +1,6 @@
 from hello.models import Quiz01Calculator, Quiz02Bmi, Quiz03Grade, Quiz04GradeAuto, Quiz05Dice, Quiz06RandomGenerator, \
     Quiz07RandomChoice, Quiz08Rps
-from domains import Members
+from domains import Member
 if __name__ == '__main__':
 
     while 1:
@@ -15,7 +15,7 @@ if __name__ == '__main__':
             print(f'{q1.num1} * {q1.num2} = {q1.mul()}')
             print(f'{q1.num1} / {q1.num2} = {q1.div()}')
         elif menu == '2':
-            member = Members()
+            member = Member()
             q2 = Quiz02Bmi
             member.name = input('이름 : ')
             member.height = float(input('키 : '))
