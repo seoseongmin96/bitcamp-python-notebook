@@ -1,44 +1,4 @@
 import random
-
-
-def main():
-    while 1:
-        menu = input('0.Exit 1.계산기 (+, -,*,/) 2.bmi 3.Grade 4.GradeAuto 5.Dice '
-                     '6.RandomGenerator 7.RandomChoice ')
-        if menu == '0':
-            break
-        elif menu == '1':
-            q1 = Quiz01Calculator(int(input('첫번째 수')), (input('계산기')), int(input('두번째 수')))
-            print(f'{q1.num1} + {q1.num2} = {q1.add()}')
-            print(f'{q1.num1} - {q1.num2} = {q1.sub()}')
-            print(f'{q1.num1} * {q1.num2} = {q1.mul()}')
-            print(f'{q1.num1} / {q1.num2} = {q1.div()}')
-        elif menu == '2':
-            q2 = Quiz02Bmi(input('이름 : '), int(input('키 : ')), int(input('몸무게 : ')))
-            print(f'이름: {q2.name}, 키: {q2.height}, '
-                  f'몸무게: {q2.weight}, BMI상태: {q2.getBmi()} ')
-        elif menu == '3':
-            q3 = Quiz03Grade(input('이름 :'), int(input('국어 :')), int(input('영어 :')), int(input('수학')))
-            print(f'이름: {q3.name}, 국어: {q3.kor}, 영어: {q3.eng}, 수학: {q3.math}, '
-                  f'총합: {q3.sum()}, 평균: {q3.avg()}, 합격여부: {q3.chkPass()}')
-        elif menu == '4':
-            q4 = Quiz04GradeAuto()
-            for i in ['김유신', '강감찬', '유관순', '윤봉길', '신사임당']:
-                print(i)
-            kor = int(input('국어 : '))
-            eng = int(input('영어 : '))
-            math = int(input('수학 : '))
-            # grade =Grade(name,kor,eng,math)
-            # print(f'{name}님의 국어{kor} 영어{eng} 수학{math} 합계{grade.sum()} 평균{grade.avg()}')
-        elif menu == '5':
-            print(Quiz05Dice.cast())
-
-        elif menu == '6':
-            q6 = None
-        elif menu == '7':
-            q7 = Quiz07RandomChoice()
-
-
 class Quiz01Calculator:
     def __init__(self, num1, op, num2):
         self.num1 = num1
@@ -65,13 +25,12 @@ class Quiz01Calculator:
 
 
 class Quiz02Bmi:
-    def __init__(self, name, height, weight):
-        self.name = name
-        self.height = height
-        self.weight = weight
 
-    def getBmi(self):
-        bmires = self.weight / (self.height * self.height) * 10000
+
+    @staticmethod
+    def getBmi(member):
+        this = member
+        bmires = this.weight / (this.height * this.height) * 10000
         if bmires > 25:
             return f'비만'
         elif bmires > 23:
@@ -135,6 +94,7 @@ class Quiz04GradeAuto:
     def chkPass(self):  # 60점이상이면 합격
         pass
 
+
 def myRandom(start, end):
     return random.randint(start, end)
 
@@ -151,7 +111,7 @@ class Quiz06RandomGenerator:
         self.end = end
 
     def random(self):
-        return random.randint(self.start, self.end)
+        return random.randint(self.start, self.end)  # 강사님께 질문하기
 
 
 class Quiz07RandomChoice:
@@ -162,10 +122,32 @@ class Quiz07RandomChoice:
                         '최민서', '한성수', '김윤섭', '김승현',
                         "강 민", "최건일", "유재혁", "김아름", "장원종"]
 
+    def chooseMember(self):
+        return self.members[myRandom(0, 23)]
 
-class Quiz08Rps(object):
-    def __init__(self):
-        pass
+
+class Quiz08Rps:
+    def __init__(self, player):
+        self.player = player
+
+    def game(self):
+        # 1 가위 2 바위 3 보
+        c = myRandom(0,2)
+        p = self.player
+        rps = ['가위', '바위', '보']
+        rps = p-c
+
+
+
+
+
+        if rps == 0:
+            res = '무승부'
+        elif rps == 1 or -2:
+            res = '패배'
+        elif rps == -1 or 2:
+            res = '이김'
+        return res
 
 
 class Quiz09GetPrime(object):
@@ -196,7 +178,3 @@ class Quiz13Bank(object):  # 이름, 입금, 출금만 구현
 class Quiz14Gugudan(object):  # 책받침구구단
     def __init__(self):
         pass
-
-
-if __name__ == '__main__':
-    main()
