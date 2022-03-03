@@ -150,9 +150,14 @@ class Quiz09GetPrime(object):
         pass
 
 
-class Quiz10LeapYear(object):
-    def __init__(self):
-        pass
+class Quiz10LeafYear(object):
+    def leaf(self):
+        i = int(input('년도를 입력해주세요'))
+        if (i % 4 == 0 and not i % 100 ==0 or i % 400 ==0):
+            res = '윤년'
+        else:
+            res = '평년'
+        return res
 
 
 class Quiz11NumberGolf(object):
@@ -173,3 +178,4 @@ class Quiz13Bank(object):  # 이름, 입금, 출금만 구현
 class Quiz14Gugudan(object):  # 책받침구구단
     def __init__(self):
         pass
+

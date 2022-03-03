@@ -1,11 +1,12 @@
 from hello.models import Quiz01Calculator, Quiz02Bmi, Quiz03Grade, Quiz04GradeAuto, Quiz05Dice, Quiz06RandomGenerator, \
-    Quiz07RandomChoice, Quiz08Rps
+    Quiz07RandomChoice, Quiz08Rps, Quiz09GetPrime, Quiz10LeafYear ,Quiz11NumberGolf, Quiz12Lotto, Quiz13Bank,Quiz14Gugudan
 from domains import Member
 if __name__ == '__main__':
 
     while 1:
         menu = input('0.Exit 1.계산기 (+, -,*,/) 2.bmi 3.Grade 4.GradeAuto 5.Dice '
-                     '6.RandomGenerator 7.RandomChoice 8. RPS')
+                     '6.RandomGenerator 7.RandomChoice 8. RPS 9.GetPrime 10.LeafYear'
+                     '11.NumberGolf 12.Lotto 13.Bank 14.Gugudan')
         if menu == '0':
             break
         elif menu == '1':
@@ -52,7 +53,15 @@ if __name__ == '__main__':
             print(f'Player : {q8.rpsName[q8.player-1]}\n'
                   f'Com : {q8.rpsName[q8.c-1]}\n'
                   f'Res : {q8.game()}')
-           
+
+        elif menu == '9':
+            pass
+
+        elif menu == '10':
+            q10 = Quiz10LeafYear()
+            print(f'{q10.leaf()}')
+
+
 
 
 
