@@ -74,9 +74,9 @@ class Quiz00:
 
     def quiz05grade(self):
         name = memberlist()
-        kor = myRandom(70,100)
-        eng = myRandom(70,100)
-        math = myRandom(70,100)
+        kor = myRandom(40,100)
+        eng = myRandom(40,100)
+        math = myRandom(40,100)
         sum = (kor + eng + math)
         avg = sum / 3
         grade = ''
@@ -112,27 +112,32 @@ class Quiz00:
         else:
             return 'F'
 
-
-
-
-
     def quiz06randomchoice(self):
-        pass
 
-    def chooseMember(self):
-        return self.members[myRandom(0, 23)]
+        print(memberlist())
+        return memberlist()
 
 
     def quiz07lotto(self):
+        for i in range(6):
+         res = myRandom(1,45)
+         print(res)
 
-        pass
 
     def quiz08bank(self):  # 이름, 입금, 출금만 구현
-        a = Account()
-        print(a.to_string())
-    def quiz09gugudan(self):  # 책받침구구단
+       Account.main()
 
-        pass
+
+    def quiz09gugudan(self):  # 책받침구구단
+        for m in range(2):
+            for i in range(1,10): # 2단부터 9단까지 ( 앞에 나오는 단 )
+                for m in range(2,6): # 뒤에 곱해주는 숫자
+
+                    print(m, 'x' ,i, '=', m*i, end='\t')
+                print()
+            print('\n')
+
+
 
 
 '''은행이름은 Bitbank
@@ -143,15 +148,17 @@ class Quiz00:
 '''
 
 class Account(object):
-    def __init__(self):
+    def __init__(self, name, account_number, money):
         self.BANK_NAME = ' 비트은행 '
-        self.name = memberlist()
+        self.name = Quiz00().quiz06randomchoice() if name == None else name
+        '''
         a = myRandom(0, 999)
         b = myRandom(0, 99)
         c = myRandom(0, 999999)
+        '''
         #self.account_number = f'{str(a).rjust(3,"0")}-{str(b).rjust(2,"0")}-{str(c).rjust(6,"0")}'
-        self.account_number = self.create_account_number()
-        self.money = myRandom(100, 999)
+        self.account_number = self.create_account_number() if account_number == None else account_number
+        self.money = myRandom(100, 999) if money == None else money
 
 
 
@@ -166,7 +173,7 @@ class Account(object):
 
 
     def create_account_number(self):
-        
+        '''
         ls = [str(myRandom(0, 9)) for i in range(3)]
         ls.append("-")
         ls += [str(myRandom(0, 9)) for i in range(2)]
@@ -175,3 +182,44 @@ class Account(object):
 
 
         return "".join(ls)
+        '''
+
+        # return "".join([str(myRandom(0,9)) if i == 3 else '-' if i == 2 else '-' if i == 6 else '' for i in range(13)])
+        return "".join(["-" if i ==3 or i ==6 else str(myRandom(0,9)) for i in range(13)])
+
+    def del_account(self, ls, account_number):
+        for i, j in enumerate(ls):
+            if j.account_number == account_number:
+                del ls[i]
+    @staticmethod
+    def main():
+        ls = []
+        while 1 :
+            menu = input('0.종료 1.계좌개설 2.계좌목록 3.입금 4.출금 5.계좌해지')
+            if menu == '0':
+                break
+            if menu == '1':
+                acc = Account(None, None ,None)
+                print(f'{acc.to_string()} ... 개설되었습니다.')
+                ls.append(acc)
+            elif menu == '2':
+
+                a = '\n'.join(i.to_string() for i in ls)
+                print(a)
+
+            elif menu == '3':
+                account_number = input('입금할 계좌번호')
+                deposit = input('입금액')
+                for i, j in enumerate(ls):
+                    if j.account_number == account_number:
+                        pass
+
+            elif menu == '4':
+                account_number = input('출금할 계좌번호')
+                money = input('출금액')
+                #추가코드 완성
+            elif menu == '5':
+                account_number = input('탈퇴할 계좌번호')
+            else:
+                print('Wrong Number.. Try Again')
+                continue
