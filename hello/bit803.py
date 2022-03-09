@@ -1,7 +1,7 @@
 from hello.domains import memberlist, myRandom
 
 
-class bit803:
+class Bit803:
     light = 0
     temp = 0
     def __init__(self):
@@ -10,10 +10,10 @@ class bit803:
         self.age = myRandom(20,30)
 
     def ctrl_light(self):
-        pass
+        self.light = 0
 
     def ctrl_temp(self):
-        pass
+        self.temp = myRandom(0,1)
 
     def attend(self):
         return f'이름 : {self.name}\n ' \
@@ -22,10 +22,14 @@ class bit803:
 
     @staticmethod
     def main():
-        ls = []
+
         while 1:
-            menu = input('0.종료 1.움직일 대상을 선택하세요 2. 학생 정보 3. 강의실 정보')
+            menu = input('0.종료 1.출석하기 /지금 출석 상태면 퇴실 2. 전등 on/off 3. 히터 on/off')
             if menu == '0':
                 break
             if menu == '1':
-                pass
+                attend = int(input(''))
+
+
+if __name__ == '__main__':
+    Bit803.main()

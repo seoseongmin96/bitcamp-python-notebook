@@ -188,12 +188,14 @@ class Account(object):
         return ''.join(['-' if i == 3 or i == 6 else str(myRandom(0,9)) for i in range(13)])
 
     @staticmethod
-    def deposit(ls, account_number):
+    def deposit(ls, find_account, money):
 
         for i, j in enumerate(ls):
-            if j.account_number == account_number:
-                a = ls[i]
-        return a.to_string()
+            if j.find_account == find_account:
+                #j.money += p_money
+                print(j)
+
+       # return a.to_string()
 
 
         #print('계좌번호: ???? 입금액: ??')
@@ -212,6 +214,10 @@ class Account(object):
         for i, j in enumerate(ls):
             if j.account_number == account_number:
                 del ls[i]
+
+    @staticmethod
+    def plus_money(ls, find_account , p_money):
+        pass
 
 
 
