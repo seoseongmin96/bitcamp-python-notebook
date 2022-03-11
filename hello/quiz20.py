@@ -3,6 +3,8 @@ import urllib.request
 
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+from hello.quiz00 import Quiz00
+import domains
 import pandas as pd
 
 
@@ -39,9 +41,17 @@ class Quiz20:
         # print(soup.prettify())
         ls1 = self.find_music(soup, 'title')
         ls2 = self.find_music(soup, 'artist')
-        dict = {}
+        a = [i if i == 0 or i == 0 else i for i in range(1)]
+        b = [i for i in []]
+        c = [(i, j) for i, j in enumerate([])]
+        d = {i: j for i, j in zip(ls1, ls2)}
+        dict = {i:j for i, j in zip(ls1,ls2)}
+        l = [ i + j for i, j in zip(ls1,ls2)]
+        l2 = list(zip(ls1,ls2))
+        #d1 = dict(zip(ls1,ls2))
         # self.dict1(ls1, ls2)
         # self.dict2(ls1, ls2)
+        # self.dict3(ls1, ls2)
         for i, j in zip(ls1, ls2):
             dict[i] = j
             print(dict)
@@ -61,8 +71,16 @@ class Quiz20:
     def dict2(ls1,ls2) -> None:
         dict = {}
         for i in range(0, len(ls2)):
-            dict[ls2[i]] = ls1[i]
+            dict[ls1[i]] = ls2[i]
         print(dict)
+
+    @staticmethod
+    def dict3(ls1, ls2) -> None:
+        dict = {}
+        for i in range(0, len(ls1)):
+            dict[ls1[i]] = ls2[i]
+        print(dict)
+
 
     def print_music_list(self, soup) -> None:
         artists = soup.find_all('p', {'class': 'artist'})
@@ -85,8 +103,22 @@ class Quiz20:
         ls = soup.find_all('p', {'class': cls_nm})
         return [i.get_text() for i in ls]
 
-    def quiz25dictcom(self) -> str:
-        return None
+    @staticmethod
+    def quiz25dictcom() -> str:
+        # memberlist()[myRandom(0,23)] 이것이 1명인데 5명 추출
+        # scores 는 0~100 점 사이에서 랜덤
+
+
+        q = Quiz00()
+        c = set([q.quiz06randomchoice() for i in range(5)])
+        while len(c) != 5:
+            c.add(q.quiz06randomchoice())
+
+        students = list(c)
+        scores = [domains.myRandom(0,100) for i in range(5)]
+        a = {i: j for i, j in zip(students, scores)}
+        print(f'{a}')
+
 
     def quiz26map(self) -> str:
         return None
@@ -104,6 +136,9 @@ class Quiz20:
         print(''.join(i for i in title))
         # print(soup)
 
+
+
+
         return None
 
     def quiz28dataframe(self) -> None:
@@ -119,6 +154,6 @@ class Quiz20:
         a = [i if i == 0 or i == 0 else i for i in range(1)]
         b = [i for i in []]
         c = [(i, j) for i, j in enumerate([])]
-        d = ''.join(i for i in [])
+        d = {i:j for i,j in zip(ls1,ls2)}
         return None
         '''

@@ -112,10 +112,10 @@ class Quiz00:
         else:
             return 'F'
 
-    def quiz06randomchoice(self):
+    @staticmethod
+    def quiz06randomchoice():
+     return memberlist()[myRandom(0,23)]
 
-        print(memberlist())
-        return memberlist()
 
 
     def quiz07lotto(self):
@@ -259,3 +259,5 @@ class Account(object):
             else:
                 print('Wrong Number.. Try Again')
                 continue
+
+
