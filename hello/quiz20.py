@@ -201,14 +201,29 @@ class Quiz20:
 
 
     def quiz29_pandas_df(self) -> object:
-        '''
+
         d = {'a' : [1, 2], 'b' : [3, 4], 'c' : [5, 6]} # 행렬 중 열에 해당하는 식
         df1 = pd.DataFrame(d, index=[1, 2]) # 인덱스 값 [1,2]
+        #       a  b  c
+        #    1  1  3  5
+        #    2  2  4  6
+
+
         d2 = {'1' : [1, 3, 5], '2' : [2, 4, 6]} # 행렬 중 행에 해당하는 식
         df2 = pd.DataFrame.from_dict(d2, orient='index',
                                      columns=['a', 'b', 'c'])  # index는 [1,2] , columns은 ['a','b','c']
+        print()
         d3 = {'1' : [1, 3, 5]} # 아토믹 처리했을때의 1번째 행의 식
-        d4 = {'2' : [2, 4, 6]} # 아토믹 처리했을때의 2번째 행의 식'''
+           # a  b  c
+           # 1  1  3  5
+           # 2  2  4  6
+
+
+        d4 = {'2' : [2, 4, 6]} # 아토믹 처리했을때의 2번째 행의 식
+
+
+
+
         x = []
         y = []
         c = [x.append(i) if i % 2 == 0 else y.append(i) for i in range(1, 7)]
@@ -219,19 +234,13 @@ class Quiz20:
         columns = [chr(i) for i in range(97, 100)]
         df3 = pd.DataFrame.from_dict(h, orient='index', columns=columns)
 
+
         print(df3)
         return None
 
 
 '''
-        a = [i if i == 0 or i ==0 else i for i in range()]
-        b = [ i if i ==0 or i ==0 else i for i in []]
-        c = [(i, j) for i, j in enumerate([])]
-        d = ''.join([])
-        e = {i:j for i, j in zip (l1, l2)}
-        l = [ i + j for i, j in zip(ls1,ls2)]
-        e2 = dict(zip(l1, l2))
-        f = list(zip(l1, l2))
+        
         
         a = [ i if i ==0 or i ==0 else i for i in range(1)]
         b = [ i if i ==0 or i ==0 else i for i in []]
@@ -241,6 +250,11 @@ class Quiz20:
         f = [ i + j for i,j in zip(ls1,ls2)]
         g = dict(zip(ls1,ls2))
         h = list(zip(ls1,ls2))
+        i = pd.Series([])
+        j = pd.DataFrame([[]],index,columns)
+        k = pd.DataFrame.from_dict({})
+        
+        
 '''
 
 

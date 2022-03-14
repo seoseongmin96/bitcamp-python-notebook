@@ -1,5 +1,12 @@
+import random
+import string
+
+import numpy as np
 import pandas as pd
 from icecream import ic
+
+from hello.domains import myRandom
+
 
 class Quiz30:
     '''
@@ -21,17 +28,14 @@ class Quiz30:
 
         ic(df)'''
 
-        l1 = []
-        l2 = []
-        l3 = []
-        l4 = []
-        [l1.append(i) for i in range(1,4)]
-        [l2.append(i) for i in range(4,7)]
-        [l3.append(i) for i in range(7,10)]
-        [l4.append(i) for i in range(10,13)]
 
-        e = {'1' : l1, '2' : l2, '3' : l3, '4' : l4}
-        df = pd.DataFrame.from_dict(e, orient='index', columns=['A', 'B', 'C'])
+        d = { '1' : range(1,4),
+              '2' : range(4,7),
+              '3' : range(7,10),
+              '4' : range(10,13)}
+
+
+        df = pd.DataFrame.from_dict(d, orient='index', columns=['A', 'B', 'C'])
         print(df)
 
 
@@ -46,6 +50,17 @@ class Quiz30:
                 1  56  83  80
     '''
     def quiz31_rand_2_by_3(self) -> str:
+        '''
+        기본 해체
+        l1 = [[myRandom(0,99) for i in range(3)] for i in range(2)]
+        l2 = [i for i in range(2)]
+        columns = [i for i in range(3)]
+        df = pd.DataFrame(l1,index=l2, columns=columns)
+        '''
+        # df = pd.DataFrame({},columns={})
+        # 넘파이 사용한 예제
+        df = pd.DataFrame(np.random.randint(10,100,size=(2,3)))
+        print(df)
 
         return None
 
@@ -66,7 +81,25 @@ class Quiz30:
                         PZOTP  94  78  79  96
                         GOJKU  62  17  75  49
     '''
-    def quiz32_df_grade(self) -> str: return None
+    @staticmethod
+    def id(chr_size) -> str: return ''.join([random.choice(string.ascii_letters) for i in range(chr_size)])
+    def quiz32_df_grade(self) -> str:
+
+       col1 = ['국어','영어','수학','사회']
+       data1 = np.random.randint(0,100,(10,4))
+       idx = [self.id(chr_size=5) for i in range(10)]
+       df1 = pd.DataFrame(data1, index=idx, columns=col1)
+       print('--------------------------------------')
+       data2 = {i:j for i,j in zip(idx,data1)}
+       col2 = ['국어','영어','수학','사회']
+       df2 = pd.DataFrame.from_dict(data2, orient= 'index', columns=col2)
+
+       ic(df1)
+       print('*'*100)
+       ic(df2)
+       return None
+
+
 
     def quiz33(self) -> str: return None
 
