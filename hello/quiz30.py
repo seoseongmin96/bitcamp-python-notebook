@@ -4,8 +4,8 @@ import string
 import numpy as np
 import pandas as pd
 from icecream import ic
-from titanic.models import Model
-from hello.domains import myRandom, memberlist
+from context.models import Model
+from hello.domains import memberlist
 
 
 class Quiz30:
@@ -83,19 +83,19 @@ class Quiz30:
     '''
     @staticmethod
     def id(chr_size) -> str: return ''.join([random.choice(string.ascii_letters) for i in range(chr_size)])
+
     def quiz32_df_grade(self) -> str:
+        col1 = ['국어', '영어', '수학', '사회']
+        data1 = np.random.randint(0, 100, (10, 4))
+        idx = [self.id(chr_size=5) for i in range(10)]
+        df = pd.DataFrame(data1, idx, col1)
+        ic(df)
+        print('------------------')
+        d = { i : j for i, j in zip(idx,data1)}
+        df1 = pd.DataFrame.from_dict(d,orient='index',columns=col1)
+        ic(df1)
+        return None
 
-       col1 = ['국어','영어','수학','사회']
-       data1 = np.random.randint(0,100,(10,4))
-       idx = [self.id(chr_size=5)for i in range(10)]
-       df = pd.DataFrame(data1,idx,col1)
-       print('--------------------------------------')
-       d = { i:j for i,j in zip(idx,data1)}
-       df2 = pd.DataFrame.from_dict(d,orient='index',columns=col1)
-       ic(df)
-       ic(df2)
-
-       return None
 
 
 
@@ -115,44 +115,24 @@ class Quiz30:
         model = Model()
         grade_df = model.new_model('grade_backup.csv')
         ic(grade_df)
-        '''
-        자바  파이썬  자바스크립트  SQL
-홍정명  61   93      24   16
-노홍주  47   38      62   99
-전종현  93   89      12   49
-정경준  81   64       0   25
-양정오  83   62      82   34
-권혜민  67   82      47   35
-서성민  82   50      67   89
-조현국  56   23      38   38
-김한슬  88   11      61   64
-김진영  28   41      64   87
-심민혜   0   37      99   52
-권솔이  95   58      67   87
-김지혜  32   40      45   97
-하진희   8    0      90   34
-최은아  50    6      91   62
-최민서  85   48      50   12
-한성수  92   15      35   17
-김윤섭  63   55      26   95
-김승현   7   18       9   12
-강 민  24   40       5   47
-최건일  55   46      85   27
-유재혁  64    5      96   95
-김아름  37    6      90   82
-장원종  40   16      31   44
-'''
+
+        print('Q1. 파이썬의 점수만 출력하시오')
+        python_scores = []
+        df.iloc[[1]]
+
+        ic(python_scores)
+        print('Q2. 조현국의 점수만 출력하시오')
+        cho_scores = None
+        ic(cho_scores)
+
 
         subj = ['자바', '파이썬', '자바스크립트', 'SQL']
         stud = memberlist()
         d = {i: j for i, j in zip(stud, np.random.randint(0, 100, (24, 4)))}
-        print(d)
+        print()
         df = pd.DataFrame.from_dict(d, orient="index", columns=subj)
         ic(df)
         # ic(df)
-
-
-
         return None
 
     @staticmethod
