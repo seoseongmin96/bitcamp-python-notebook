@@ -2,7 +2,7 @@ from context.domains import Dataset
 from context.models import Model
 
 
-class View:
+class TitanicView:
     model = Model()
     dataset = Dataset()
 
@@ -17,5 +17,6 @@ class View:
         # id 추출
         print(f'트레인 컬럼 {this.train.columns}')
         print(f'트레인 헤드 {this.train.head()}')
+
 
 

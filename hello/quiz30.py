@@ -112,26 +112,31 @@ class Quiz30:
         # ic(df)
         # https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html
         # grade.csv
+
+
+
+
+
+        subjects = ['자바', '파이썬', '자바스크립트', 'SQL']
+        students = memberlist()
+        scores = np.random.randint(0,100,(24,4))
+        students_scores = {student:score for student,score in zip(students,scores)}
+        students_scores_df = pd.DataFrame.from_dict(students_scores, orient="index", columns=subjects)
         model = Model()
-        grade_df = model.new_model('grade_backup.csv')
+        #model.save_model(fname='grade.csv', dframe=df)
+        grade_df = model.new_model(fname='grade_backup.csv')
         ic(grade_df)
-
         print('Q1. 파이썬의 점수만 출력하시오')
-        python_scores = []
-        df.iloc[[1]]
-
+        python_scores = grade_df.loc[:, '파이썬']
+        ic(type(python_scores))
         ic(python_scores)
         print('Q2. 조현국의 점수만 출력하시오')
-        cho_scores = None
-        ic(cho_scores)
+        cho_subjects_scores = grade_df.loc['조현국']
+        ic(type(cho_subjects_scores))
+        ic(cho_subjects_scores)
 
 
-        subj = ['자바', '파이썬', '자바스크립트', 'SQL']
-        stud = memberlist()
-        d = {i: j for i, j in zip(stud, np.random.randint(0, 100, (24, 4)))}
-        print()
-        df = pd.DataFrame.from_dict(d, orient="index", columns=subj)
-        ic(df)
+
         # ic(df)
         return None
 

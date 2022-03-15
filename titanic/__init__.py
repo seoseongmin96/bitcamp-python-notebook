@@ -1,18 +1,26 @@
 #https://github.com/datasciencedojo/datasets/blob/master/titanic.csv
-from titanic.views import View
-
+# from titanic.templates import TitanicTemp
+from titanic.templates import TitanicTemp
+from titanic.views import TitanicView
+from titanic.models import TitanicModel
+from icecream import ic
 if __name__ == '__main__':
-    def print_menu():
-
-        print('1.전처리')
+    view = TitanicView()
 
 
-    view = View()
     while 1:
 
-        menu = input(print_menu())
-        if menu == '1':
-            print(' #### 1. 전처리 ####')
-            view.preprocess('train.csv','test.csv')
-        else:
-         break
+        menu = input('0.Exit 1.model 2.template')
+        if menu == '0':
+            break
+
+        elif menu =='1':
+            print('#### 1. model ####')
+            model = TitanicModel(train_fname='train.csv',
+                                 test_fname='test.csv')
+
+        elif menu == '2':
+            print('#### 2. template ####')
+            temp = TitanicTemp(train_fname='train.csv',
+                               test_fname='test.csv')
+            break
