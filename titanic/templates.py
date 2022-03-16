@@ -17,8 +17,6 @@ class TitanicTemp (object):
     model = Model()
     def __init__(self,fname):
         self.entity = self.model.new_model((fname))
-
-    def draw_survived_dead(self):
         this = self.entity
         ic(f'트레인의 타입:{type(this)}')
         ic(f'트레인의 컬럼:{this.columns}')

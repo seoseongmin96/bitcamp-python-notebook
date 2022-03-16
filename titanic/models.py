@@ -12,17 +12,14 @@ class TitanicModel (object):
 
         self.train = self.model.new_model(train_fname)
         self.test = self.model.new_model(test_fname)
-
+        ic(f'트레인 컬럼 {self.train.columns}')
+        ic(f'트레인 헤드 {self.train.head()}')
+        ic(self.train)
         # id 추출
-
-
-
 
     def preprocess(self):
         df = self.train
-        ic(f'트레인 컬럼 {self.train.columns}')
-        ic(f'트레인 헤드 {self.train.head()}')
-        ic(df)
+
         df = self.drop_feature(df)
         df = self.create_label(df)
         df = self.create_train(df)
@@ -34,7 +31,6 @@ class TitanicModel (object):
         df = self.embarked_nominal(df)
         return df
 
-
     @staticmethod
     def create_label(df) -> object:
         return df
@@ -44,7 +40,7 @@ class TitanicModel (object):
         return df
 
     def drop_feature(self, df) -> object:
-        a = [ i for i in []]
+        a = [i for i in []]
 
         '''
         self.sibsp_garbage(df)

@@ -19,8 +19,10 @@ if __name__ == '__main__':
             model = TitanicModel(train_fname='train.csv',
                                  test_fname='test.csv')
 
+
         elif menu == '2':
             print('#### 2. template ####')
-            temp = TitanicTemp(train_fname='train.csv',
-                               test_fname='test.csv')
+            temp = TitanicTemp(fname='train.csv')
+            temp.visualize()
+            temp.draw_survived_dead()
             break
