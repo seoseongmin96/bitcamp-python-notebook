@@ -1,6 +1,8 @@
 #https://github.com/datasciencedojo/datasets/blob/master/titanic.csv
 # from titanic.templates import TitanicTemp
-from titanic.templates import TitanicTemp
+
+
+from titanic.templates import TitanicTemplate
 from titanic.views import TitanicView
 from titanic.models import TitanicModel
 from icecream import ic
@@ -16,13 +18,14 @@ if __name__ == '__main__':
 
         elif menu =='1':
             print('#### 1. model ####')
-            model = TitanicModel(train_fname='train.csv',
+            model = TitanicModel()
+            model.preprocess(train_fname='train.csv',
                                  test_fname='test.csv')
-
+            break
 
         elif menu == '2':
             print('#### 2. template ####')
-            temp = TitanicTemp(fname='train.csv')
-            temp.visualize()
-            temp.draw_survived_dead()
+            templates = TitanicTemplate(fname='train.csv')
+            templates.visualize()
+
             break

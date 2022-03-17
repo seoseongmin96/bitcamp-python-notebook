@@ -13,7 +13,6 @@ class Dataset :
     label : str
 
 
-
     @property
     def dname(self) -> str: return self._dname
 
