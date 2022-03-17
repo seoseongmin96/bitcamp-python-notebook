@@ -17,16 +17,20 @@ class TitanicModel (object):
     def preprocess(self,train_fname,test_fname):
         this = self.dataset
         that = self.model
+        # 데이터셋은 Train, Test, Validation 3종류로 나뉜다
         this.train = that.new_dframe(train_fname)
         this.test = that.new_dframe(test_fname)
         this.id = this.test['PassengerId']
         this.label = this.train['Survived']
-        this.train = this.train.drop('Survived',axis = 1)
 
+        this.train = this.train.drop('Survived', axis=1)
+        # Entity 에서 Object 로 전환
+        this = self.drop_feature(this,'Cabin', 'Parch', 'Ticket', 'SibSp')
         '''
-        
-        this = self.drop_feature(this)
+        self.create_label(this)
+       
         this = self.create_label(this)
+        
         this = self.create_train(this)
         this = self.pclass_ordinal(this)
         this = self.name_nominal(this)
@@ -54,6 +58,41 @@ class TitanicModel (object):
         ic(f'10. id의 상위 10개 :{this.id[:10]}\n')
         print('*'*100)
 
+    @staticmethod
+    def drop_feature(this, *feature) -> object:
+
+        for i in feature:
+            this.train = this.train.drop(i,axis=1)
+            this.test = this.test.drop(i, axis=1)
+
+
+
+
+        '''this.train = this.train.drop('SibSp', axis=1)
+        this.train = this.train.drop('Parch', axis=1)
+        this.train = this.train.drop('Cabin', axis=1)
+        this.train = this.train.drop('Ticket', axis=1)'''
+
+
+        #this.train = [this.train.drop(i, axis=1) for i in feature]
+
+
+
+        '''this.test = this.train.drop('SibSp', axis=1)
+        this.test = this.train.drop('Parch', axis=1)
+        this.test = this.train.drop('Cabin', axis=1)
+        this.test = this.train.drop('Ticket', axis=1)
+        this.test = [this.test.drop(i, axis=1) for i in ['Cabin', 'Parch', 'Ticket', 'Sibsp']]'''
+
+        #a = [i for i in []]
+        '''
+        self.sibsp_garbage(df)
+        self.parch_garbage(df)
+        self.ticket_garbage(df)
+        self.cabin_garbage(df)
+        '''
+        return this
+
 
     def create_this(self,dataset) -> object:
         this = dataset
@@ -65,17 +104,6 @@ class TitanicModel (object):
 
     @staticmethod
     def create_train(this) -> object:
-        return this
-
-    def drop_feature(self, this) -> object:
-        a = [i for i in []]
-
-        '''
-        self.sibsp_garbage(df)
-        self.parch_garbage(df)
-        self.ticket_garbage(df)
-        self.cabin_garbage(df)
-        '''
         return this
 
     '''
