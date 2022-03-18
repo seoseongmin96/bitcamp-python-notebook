@@ -17,6 +17,7 @@ class TitanicModel (object):
     def preprocess(self,train_fname,test_fname):
         this = self.dataset
         that = self.model
+
         # 데이터셋은 Train, Test, Validation 3종류로 나뉜다
         this.train = that.new_dframe(train_fname)
         this.test = that.new_dframe(test_fname)
@@ -25,7 +26,9 @@ class TitanicModel (object):
 
         this.train = this.train.drop('Survived', axis=1)
         # Entity 에서 Object 로 전환
+
         this = self.drop_feature(this,'Cabin', 'Parch', 'Ticket', 'SibSp')
+        #self.kwargs_sample(name='이순신')
         '''
         self.create_label(this)
        
@@ -60,13 +63,13 @@ class TitanicModel (object):
 
     @staticmethod
     def drop_feature(this, *feature) -> object:
+        '''
+        for i in [this.train, this.test]:
+            for j in feature:
+             i.drop(j,axis=1, inplace = True)'''
 
-        for i in feature:
-            this.train = this.train.drop(i,axis=1)
-            this.test = this.test.drop(i, axis=1)
 
-
-
+        [i.drop(j, axis=1, inplace = True) for j in feature  for i in [this.train, this.test]]
 
         '''this.train = this.train.drop('SibSp', axis=1)
         this.train = this.train.drop('Parch', axis=1)
@@ -84,7 +87,7 @@ class TitanicModel (object):
         this.test = this.train.drop('Ticket', axis=1)
         this.test = [this.test.drop(i, axis=1) for i in ['Cabin', 'Parch', 'Ticket', 'Sibsp']]'''
 
-        #a = [i for i in []]
+
         '''
         self.sibsp_garbage(df)
         self.parch_garbage(df)
@@ -93,6 +96,10 @@ class TitanicModel (object):
         '''
         return this
 
+    @staticmethod
+    def kwargs_sample(**kwargs) -> None:
+        ic(type(kwargs)) #ic | type(feature) : <class 'tuple'>
+        [print(''.join(f'key:{i},val:{j}')) for i,j in kwargs.items()] # key:name, val: 이순신
 
     def create_this(self,dataset) -> object:
         this = dataset
