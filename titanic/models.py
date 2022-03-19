@@ -38,7 +38,7 @@ class TitanicModel(object):
         this = self.fare_ratio(this)
         this = self.drop_feature(this,'Fare')
         #self.remove_duplicate(this)
-        # this = self.title_nominal(this)
+        # 
 
         # this = self.name_nominal(this)
         '''
@@ -70,6 +70,7 @@ class TitanicModel(object):
     @staticmethod
     def drop_feature(this, *feature) -> object:
         # ic(type(feature)) # ic| type(feature): <class 'tuple'>
+
         '''
         for i in [this.train, this.test]:
             for j in feature:
@@ -97,7 +98,7 @@ class TitanicModel(object):
     def extract_title_from_name(this) -> None:
         for these in [this.train, this.test]:
             these['Title'] = these.Name.str.extract('([A-Za-z]+)\.', expand=False)
-        # ic(this.train.head(5))
+            #ic(this.train.head(5))
         return this
 
     @staticmethod
