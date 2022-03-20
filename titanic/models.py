@@ -38,7 +38,7 @@ class TitanicModel(object):
         this = self.fare_ratio(this)
         this = self.drop_feature(this,'Fare')
         #self.remove_duplicate(this)
-        # 
+        #
 
         # this = self.name_nominal(this)
         '''
@@ -145,7 +145,7 @@ class TitanicModel(object):
         test['Age'] = test['Age'].fillna(-0.5) # 왜 NaN 값에 -0.5 를 할당할까요?
         # Unknown 은 범위가 없는 상태이기 때문에 -1부터 0 사이에 임의의 결측값 -0.5넣어주면서 Unknown의 범위를 만들어준 것이다
         bins = [-1, 0, 5, 12, 18, 24, 35, 60, np.inf] # 이것을 이해해보세요
-        # None 타입을 np.inf를 이용해 숫자 값으로 변환해주는 역할
+        # np.inf는 무한대의 역할
         labels = ['Unknown', 'Baby', 'Child', 'Teenager', 'Student', 'Young Adult', 'Adult', 'Senior']
         for these in train, test:
             # pd.cut() 을 사용하시오. 다른 곳은 고치지 말고 다음 두 줄만 코딩하시오
