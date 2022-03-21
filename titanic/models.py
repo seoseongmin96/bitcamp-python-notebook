@@ -6,6 +6,9 @@ from icecream import ic
 import titanic
 from context.domains import Dataset
 from context.models import Model
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import RandomForestClassifier
 
 
 class TitanicModel(object):
@@ -37,6 +40,7 @@ class TitanicModel(object):
         this = self.drop_feature(this, 'Age')
         this = self.fare_ratio(this)
         this = self.drop_feature(this,'Fare')
+        this = self.pclass_ordinal(this)
         #self.remove_duplicate(this)
         #
 
@@ -45,7 +49,7 @@ class TitanicModel(object):
         
         
         
-        this = self.pclass_ordinal(this)
+        
         
         '''
 
@@ -95,14 +99,14 @@ class TitanicModel(object):
         return this
 
     @staticmethod
-    def extract_title_from_name(this) -> None:
+    def extract_title_from_name(this) -> object:
         for these in [this.train, this.test]:
             these['Title'] = these.Name.str.extract('([A-Za-z]+)\.', expand=False)
             #ic(this.train.head(5))
         return this
 
     @staticmethod
-    def remove_duplicate(this) -> None:
+    def remove_duplicate(this) -> dict:
         a = []
         for these in [this.train, this.test]:
             a += list(set(these['Title']))
@@ -177,9 +181,10 @@ class TitanicModel(object):
         this.train['FareBand'] = pd.qcut(this.train['Fare'], 4)
         # print(f'qcut 으로 bins 값 설정 {this.train["FareBand"].head()}')
         bins = [-1, 8, 15, 31, np.inf]
-
+        fare_mapping = {1,2,3,4}
         for these in [this.train, this.test]:
             these['FareBand'] = these['Fare'].fillna(1)
-            these['FareBand'] = pd.qcut(these['FareBand'],4)
+            these['FareBand'] = pd.qcut(these['FareBand'],4, fare_mapping)
+
 
         return this
