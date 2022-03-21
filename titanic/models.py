@@ -41,17 +41,11 @@ class TitanicModel(object):
         this = self.fare_ratio(this)
         this = self.drop_feature(this,'Fare')
         this = self.pclass_ordinal(this)
+        k_fold = self.create_k_fold()
+        accuracy = self.get_accuracy(this, k_fold)
+        ic(accuracy)
         #self.remove_duplicate(this)
-        #
-
         # this = self.name_nominal(this)
-        '''
-        
-        
-        
-        
-        
-        '''
 
         self.df_info(this)
         return this
@@ -188,3 +182,13 @@ class TitanicModel(object):
 
 
         return this
+
+    @staticmethod
+    def create_k_fold() -> object:
+        return KFold(n_splits=10, shuffle=True, random_state=0)
+
+    @staticmethod
+    def get_accuracy(this, k_fold):
+        score = cross_val_score(RandomForestClassifier(), this.train, this.label,
+                                cv= k_fold, n_jobs=1, scoring= 'accuracy')
+        return round(np.mean(score)*100, 2)
