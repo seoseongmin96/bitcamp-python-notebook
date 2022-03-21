@@ -19,7 +19,7 @@ if __name__ == '__main__':
         elif menu =='1':
             print('#### 1. model ####')
             model = TitanicModel()
-            model.preprocess(train_fname='train.csv',
+            model.learning(train_fname='train.csv',
                                  test_fname='test.csv')
             break
 

@@ -47,8 +47,25 @@ class TitanicModel(object):
         #self.remove_duplicate(this)
         # this = self.name_nominal(this)
 
-        self.df_info(this)
+
         return this
+
+
+    def learning(self, train_fname, test_fname):
+        this = self.preprocess(train_fname, test_fname)
+        print('*'*100)
+        self.df_info(this)
+        k_fold = self.create_k_fold()
+        ic(f'사이킷런 알고리즘 정확도: {self.get_accuracy(this, k_fold)}')
+
+        self.submit(this)
+
+    @staticmethod
+    def submit(this):
+        clf = RandomForestClassifier()
+        clf.fit(this.train, this.label)
+        prediction = clf.predict(this.test)
+        pd.DataFrame({'PassengerId': this.id, 'Survived': prediction}).to_csv('./save/submission.csv', index=False)
 
     @staticmethod
     def df_info(this):
@@ -192,3 +209,5 @@ class TitanicModel(object):
         score = cross_val_score(RandomForestClassifier(), this.train, this.label,
                                 cv= k_fold, n_jobs=1, scoring= 'accuracy')
         return round(np.mean(score)*100, 2)
+
+
